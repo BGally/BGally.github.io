@@ -947,10 +947,10 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
       decay: 2.167554391937645,
       diffuse: 7.8,
       sp: [
-        { speed: 122, turn: 5.5, angle: 28, dist: 24.5, size: 5, wander: 0, others: -1, color: "#ff0000" },
-        { speed: 72, turn: -48, angle: 118, dist: 15, size: 5, wander: 2, others: 0.3, color: "#0055ff" },
-        { speed: 76, turn: 27.5, angle: 36, dist: 25, size: 2, wander: 2.2, others: -0.2, color: "#00ff33" },
-        { speed: 150, turn: -77.5, angle: 18, dist: 15, size: 2, wander: 8, others: -1, color: "#000480" }
+        { speed: 122, turn: 5.5, angle: 28, dist: 24.5, size: 4, wander: 0, others: -1, color: "#ff0000" },
+        { speed: 72, turn: -48, angle: 118, dist: 15, size: 4, wander: 2, others: 0.3, color: "#0055ff" },
+        { speed: 76, turn: 27.5, angle: 36, dist: 25, size: 1, wander: 2.2, others: -0.2, color: "#00ff33" },
+        { speed: 150, turn: -77.5, angle: 18, dist: 15, size: 1, wander: 8, others: -1, color: "#000480" }
       ],
       look: { mode: "species", palette: "ember", bg: "#000000", exposure: 6.368490969528741, contrast: 0.95, vignette: 0.32, view: "trails", sharp: false, bloom: true, bloomIntensity: 0.2, bloomThreshold: 1, bloomKnee: 0.5, sunrays: false, raysWeight: 1 }
     },
@@ -1005,10 +1005,10 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
       decay: 1.599,
       diffuse: 1.4,
       sp: [
-        { speed: 120, turn: 3.5, angle: 24, dist: 20, size: 5, wander: 0, others: -1, color: "#db0000" },
-        { speed: 24, turn: -48, angle: 118, dist: 15, size: 5, wander: 2, others: 0.3, color: "#000ba8" },
+        { speed: 120, turn: 3.5, angle: 24, dist: 20, size: 4, wander: 0, others: -1, color: "#db0000" },
+        { speed: 24, turn: -48, angle: 118, dist: 15, size: 4, wander: 2, others: 0.3, color: "#000ba8" },
         { speed: 55, turn: 21, angle: 65, dist: 25, size: 2, wander: 0, others: -0.2, color: "#b4b1b1" },
-        { speed: 120, turn: 2.5, angle: 10, dist: 15, size: 2, wander: 0, others: -1, color: "#140000" }
+        { speed: 120, turn: 2.5, angle: 10, dist: 15, size: 1, wander: 0, others: -1, color: "#140000" }
       ],
       look: { mode: "species", palette: "ember", bg: "#000000", exposure: 5.384915063759465, contrast: 1.4, vignette: 0.2, view: "trails", sharp: false, bloom: true, bloomIntensity: 0.25, bloomThreshold: 1, bloomKnee: 0.5, sunrays: false, raysWeight: 1 }
     },
@@ -1033,20 +1033,20 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
     },
     cells: {
       label: "Cells",
-      agents: 1e6,
+      agents: 7e5,
       species: 4,
       spawn: "random",
       speed: 2.0287019608753423,
       stepSize: 1,
       edges: "wrap",
-      trail: 0.7269200545547725,
+      trail: 1.04,
       decay: 0.6686660102695356,
       diffuse: 0,
       sp: [
-        { speed: 56, turn: 45, angle: 100, dist: 38, size: 2, wander: 0, others: -1.29, color: "#8d4d99" },
+        { speed: 56, turn: 45, angle: 100, dist: 38, size: 1, wander: 0, others: -1.29, color: "#8d4d99" },
         { speed: 50, turn: -35, angle: 65, dist: 8, size: 1, wander: 0, others: -0.6, color: "#edaf4e" },
         { speed: 24, turn: 27, angle: 53, dist: 26, size: 1, wander: 2.7, others: -1.46, color: "#65f599" },
-        { speed: 58, turn: 33, angle: 59, dist: 20, size: 2, wander: 0, others: -1.17, color: "#070906" }
+        { speed: 58, turn: 33, angle: 59, dist: 20, size: 1, wander: 0, others: -1.17, color: "#070906" }
       ],
       look: { mode: "species", palette: "toxic", bg: "#000000", exposure: 1.0120550120228538, contrast: 1.15, vignette: 0.14, view: "trails", sharp: false, bloom: true, bloomIntensity: 0.55, bloomThreshold: 0.81, bloomKnee: 0.35, sunrays: false, raysWeight: 1 }
     },
@@ -1100,10 +1100,10 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
       decay: 0.6426433299718075,
       diffuse: 0.6,
       sp: [
-        { speed: 40, turn: 9, angle: 91, dist: 26, size: 2, wander: 0.3, others: -0.65, color: "#ff0000" },
-        { speed: 139, turn: 67.5, angle: 70, dist: 37, size: 2, wander: 0, others: -1.2, color: "#150019" },
+        { speed: 40, turn: 9, angle: 91, dist: 26, size: 1, wander: 0.3, others: -0.65, color: "#ff0000" },
+        { speed: 139, turn: 67.5, angle: 70, dist: 37, size: 1, wander: 0, others: -1.2, color: "#150019" },
         { speed: 40, turn: 10, angle: 75, dist: 30, size: 0, wander: 0, others: 0.3, color: "#67feb0" },
-        { speed: 55, turn: 39, angle: 17, dist: 34, size: 2, wander: 2, others: -0.19, color: "#4400ff" }
+        { speed: 55, turn: 39, angle: 17, dist: 34, size: 1, wander: 2, others: -0.19, color: "#4400ff" }
       ],
       look: { mode: "species", palette: "ember", bg: "#05060a", exposure: 1.3, contrast: 1, vignette: 0.35, view: "trails", sharp: false, bloom: false, bloomIntensity: 0.1, bloomThreshold: 1, bloomKnee: 0.7, sunrays: false, raysWeight: 1 }
     },
@@ -3591,8 +3591,8 @@ fn composite(i: VO) -> @location(0) vec4f {
     screenshot: () => actions.screenshotData(),
     pointerCell: () => null,
     // set by main.js
-    internals: { sim }
-    // the GPU state, for poking at in the console; not a stable interface
+    internals: { sim, stats }
+    // the GPU state and live stats, for poking at in the console; not a stable interface
   };
   function addObject(type, o) {
     const tool = (type === "emitters" ? "emit-" : "absorb-") + (o.kind === "circle" ? "circle" : "line");
@@ -5200,7 +5200,6 @@ OUT OF RANGE ${r.outOfRange}` : " · positions ok"}`;
   var gpuReady = false;
   var simAcc = 0;
   var lastNow = 0;
-  var stepCap = MAX_STEPS;
   var fpsFrames = 0;
   var fpsTime = performance.now();
   var lastTick = 0;
@@ -5230,6 +5229,7 @@ OUT OF RANGE ${r.outOfRange}` : " · positions ok"}`;
     clampView();
     resetStats();
     simAcc = 0;
+    resetPacing();
     if (paused) {
       pendingSteps = 1;
       revealBoost = Math.min(20, 0.15 / Math.max(5e-3, S.species[0].decay * stepSeconds()));
@@ -5258,6 +5258,40 @@ OUT OF RANGE ${r.outOfRange}` : " · positions ok"}`;
       placeBrush(pointer.x, pointer.y);
     }
   });
+  var pace = { budget: 6, vsync: 1e3 / 60, ms: 0, frames: 0, steps: 0, capped: false, hold: 0, cut: null, probed: false };
+  function resetPacing() {
+    Object.assign(pace, { ms: 0, frames: 0, steps: 0, capped: false, hold: 0, cut: null, probed: false });
+  }
+  function pacing(now, frameMs) {
+    if (frameMs > 0 && frameMs < 1e3) {
+      pace.ms += frameMs;
+      pace.frames++;
+    }
+    if (pace.ms < 500 || pace.frames < 4) return;
+    const avg = pace.ms / pace.frames, perFrame = pace.steps / pace.frames, capped = pace.capped;
+    Object.assign(pace, { ms: 0, frames: 0, steps: 0, capped: false });
+    pace.vsync = Math.min(pace.vsync, Math.max(4, avg));
+    const slow = avg > pace.vsync * 1.3;
+    if (pace.cut) {
+      if (avg > pace.cut.avg * 0.85) {
+        pace.budget = pace.cut.from;
+        pace.hold = now + 1e4;
+      }
+      pace.cut = null;
+    } else if (slow && pace.probed) {
+      pace.budget = Math.max(1, pace.budget - 1);
+      pace.hold = now + 15e3;
+      pace.probed = false;
+    } else if (slow && perFrame > 1 && now >= pace.hold) {
+      pace.cut = { from: pace.budget, avg };
+      pace.budget = Math.max(1, Math.min(pace.budget - 1, Math.floor(perFrame * pace.vsync / avg)));
+      pace.hold = now + 4e3;
+    } else if (capped && !slow && now >= pace.hold && pace.budget < MAX_STEPS) {
+      pace.budget++;
+      pace.probed = true;
+      pace.hold = now + 1e3;
+    } else pace.probed = false;
+  }
   function frame(now) {
     requestAnimationFrame(frame);
     try {
@@ -5271,19 +5305,20 @@ OUT OF RANGE ${r.outOfRange}` : " · positions ok"}`;
     const frameMs = lastNow ? now - lastNow : 0;
     const elapsed = Math.min(0.1, frameMs / 1e3);
     lastNow = now;
-    if (frameMs > 45) stepCap = Math.max(1, Math.floor(stepCap * 0.75));
-    else if (frameMs && frameMs < 25) stepCap = Math.min(MAX_STEPS, stepCap + 1);
     let steps = 0;
     if (!paused) {
+      pacing(now, frameMs);
       simAcc += elapsed * S.sim.speed;
       steps = Math.floor(simAcc / stepSeconds());
-      if (steps > stepCap) {
-        steps = stepCap;
+      if (steps > pace.budget) {
+        steps = pace.budget;
         simAcc = 0;
+        pace.capped = true;
       } else simAcc -= steps * stepSeconds();
+      pace.steps += steps;
     }
     if (pendingSteps) {
-      steps = Math.min(pendingSteps, 2e3);
+      steps = Math.min(pendingSteps, 50);
       pendingSteps -= steps;
     }
     fillParams({ brush: brushState(), steps, wallsOn });
@@ -5301,7 +5336,7 @@ OUT OF RANGE ${r.outOfRange}` : " · positions ok"}`;
       sim.device.queue.onSubmittedWorkDone().then(() => w.forEach((f) => f()));
     }
     stats.stepsPerFrame = steps;
-    stats.stepCap = stepCap;
+    stats.stepCap = pace.budget;
     if (wantShot) {
       const done = wantShot;
       wantShot = null;
