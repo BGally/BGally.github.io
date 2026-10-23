@@ -138,6 +138,8 @@ body #tools.open .tab { opacity: 0; }
 body.hide-ui #presets, body.panel-min #presets { left: 50%; }
 body.hide-ui #presets { opacity: 0; pointer-events: none; }
 @media (hover: hover) { body.idle #presets.can-fade:not(:hover):not(.open) { opacity: 0; transition: opacity .8s; } }
+/* Touch screens have no idle mouse: the bar goes when you touch the simulation, like the title, and ☰ brings it back. */
+@media (hover: none) { body.panel-min #presets { opacity: 0; pointer-events: none; } }
 #presets .strip, #presets .grid {
   background: var(--panel); border: 1px solid var(--panel-border);
   backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%);
