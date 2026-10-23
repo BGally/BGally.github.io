@@ -230,9 +230,6 @@ summary:hover { color: var(--text); }
 .about .about-head { color: var(--text); font-weight: 600; margin-bottom: 4px; }
 .about .gap { margin-top: 10px; }
 .about a { color: var(--text); }
-.about details { border: 0; }
-.about summary { padding: 4px 0; }
-.about pre { margin: 4px 0 0; white-space: pre-wrap; font: 10.5px/1.45 ui-monospace, Consolas, monospace; color: var(--muted); }
 
 .ctl-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
 .ctl-top label { color: var(--text); }
@@ -4806,15 +4803,6 @@ fn composite(i: VO) -> @location(0) vec4f {
   }
 
   // src/ui/tab-more.js
-  var GLOW_LICENCE = `MIT License
-
-Copyright (c) 2017 Pavel Dobryakov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.`;
   function about(body2) {
     body2.append(caption("About"));
     body2.append(note("Plasmodia: a particle simulation on WebGPU. Up to 2 million particles in four species leave trails and steer by each other's, and can graze, hunt and multiply."));
@@ -4831,9 +4819,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       line(link("Particle Life", "https://sandbox-science.com/particle-life"), " on Sandbox Science"),
       Object.assign(line("Glow (bloom and sun rays) adapted from ", link("WebGL Fluid Simulation", "https://github.com/PavelDoGreat/WebGL-Fluid-Simulation"), " by Pavel Dobryakov"), { className: "gap" })
     );
-    const lic = el("details");
-    lic.append(el("summary", null, "Licence"), el("pre", null, GLOW_LICENCE));
-    credits.append(lic);
     body2.append(credits);
   }
   function moreTab(body2, add2) {
@@ -5678,6 +5663,30 @@ OUT OF RANGE ${r.outOfRange}` : " · positions ok"}`;
     requestAnimationFrame(frame);
   })();
 })();
+/*! The glow below is adapted from WebGL Fluid Simulation (https://github.com/PavelDoGreat/WebGL-Fluid-Simulation).
+
+MIT License
+
+Copyright (c) 2017 Pavel Dobryakov
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
 </script>
 </body>
