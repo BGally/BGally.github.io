@@ -1129,9 +1129,9 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
       barriers: [
         { t: "l", x0: 0.5005, y0: 0.6203, x1: 0, y1: 3e-4, w: 325e-5 },
         { t: "l", x0: 0.501, y0: 0.6204, x1: 0.999, y1: 0, w: 278e-5 },
-        { t: "l", x0: 0.9974, y0: 0.7139, x1: 26e-4, y1: 0.7074, w: 278e-5 },
-        { t: "l", x0: 0.9995, y0: 0.7118, x1: 0.9995, y1: 0.7148, w: 278e-5 },
-        { t: "l", x0: 0, y0: 0.7057, x1: 0, y1: 0.709, w: 278e-5 }
+        // The veil: level, with a gap at each end (0.35% of the width) that agents seep through slowly. Measured
+        // 2026-10-23: about 1 open column on a phone, 4 on a laptop, and a similar seep on both.
+        { t: "l", x0: 0.9965, y0: 0.71, x1: 35e-4, y1: 0.71, w: 278e-5 }
       ]
     },
     mould: {
