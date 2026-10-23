@@ -768,6 +768,14 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
       help: "How strongly the food field tints the background"
     },
     { path: "life.foodColor", tab: "life", label: "Food colour", kind: "color", when: (S2) => S2.life.food },
+    {
+      path: "debug.view",
+      tab: "look",
+      label: "Show",
+      kind: "seg",
+      options: [["trails", "Trails"], ["deposits", "Agents only"]],
+      help: "Agents only: just where the agents are this moment, without their trails"
+    },
     { path: "look.mode", tab: "look", label: "Colouring", kind: "seg", options: [["species", "Species colours"], ["palette", "Gradient"]] },
     {
       path: "look.palette",
@@ -810,8 +818,7 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
     { path: "brush.thickness", tab: "world", label: "New barrier thickness", min: 3, max: 60, step: 1, help: "For barriers you draw next, in cells. Select a barrier to change its own" },
     { path: "brush.radius", tab: "tools", label: "Radius", min: 5, max: 400, step: 1 },
     { path: "brush.strength", tab: "tools", label: "Strength", min: 1, max: 500, log: true },
-    { path: "debug.overlay", tab: "debug", label: "Overlay", kind: "toggle", help: "Counts, rates and outlines on the simulation (D)" },
-    { path: "debug.view", tab: "debug", label: "Show", kind: "seg", options: [["trails", "Trails"], ["deposits", "Agents only"]] }
+    { path: "debug.overlay", tab: "debug", label: "Overlay", kind: "toggle", help: "Counts, rates and outlines on the simulation (D)" }
   ];
   var FIELD = Object.fromEntries(FIELDS.map((f) => [f.path, f]));
   var SET_FIELD = Object.fromEntries(SET_FIELDS.map((f) => [f.key, f]));
