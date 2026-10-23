@@ -1192,12 +1192,12 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
     }
   };
   var CURRENT = {
-    // Predator/prey with food (the user's, 2026-10-23): blue prey graze a slowly regrowing field from a single dot of
+    // Predator/prey with food (the user's, 2026-10-23): blue prey graze a slowly regrowing field from a smiley, :), of
     // 3,900 agents; red predators eat them. Replaced the first tuned version (300k scattered, no food), which
     // tests/life.cjs keeps as its own setup.
     predprey: {
       name: "Predator & prey",
-      sim: { startAgents: 3900, maxAgents: 15e5, speciesCount: 2, spawn: "text", text: ".", res: 1, speed: 1, stepSize: 1, edges: "wrap" },
+      sim: { startAgents: 3900, maxAgents: 15e5, speciesCount: 2, spawn: "text", text: ":)", res: 1, speed: 1, stepSize: 1, edges: "wrap" },
       life: { on: true, cell: 4, food: true, regrow: 40.707429999210284, stock: 0.35602795355055433, foodColor: "#59ff00", foodShow: 0 },
       species: [
         {
@@ -1248,13 +1248,13 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
         vignette: 0.3,
         sharp: false,
         bloom: true,
-        bloomIntensity: 0.15,
-        bloomThreshold: 0.8,
+        bloomIntensity: 0.6,
+        bloomThreshold: 0.58,
         bloomKnee: 0.7,
         sunrays: false,
         raysWeight: 1
       },
-      world: { barriers: [], barrierColor: "#303030", emitters: [], absorbers: [] }
+      world: { barriers: [], barrierColor: "#d1d9eb", emitters: [], absorbers: [] }
     },
     // Four species with food (the user's, 2026-10-23): green grazers, three kinds of predator that also eat each other,
     // from a ring of 30k agents, and an emitter that keeps seeding a few of every species.
