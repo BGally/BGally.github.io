@@ -224,6 +224,15 @@ summary::after { content: "›"; font-size: 15px; transition: transform .2s; }
 details[open] > summary::after { transform: rotate(90deg); }
 summary:hover { color: var(--text); }
 .sec { padding: 0 14px 12px; display: grid; gap: 10px; }
+/* About (More tab) */
+.about { color: var(--muted); font-size: 11.5px; }
+.about p { margin: 0 0 6px; }
+.about .about-head { color: var(--text); font-weight: 600; margin-bottom: 4px; }
+.about .gap { margin-top: 10px; }
+.about a { color: var(--text); }
+.about details { border: 0; }
+.about summary { padding: 4px 0; }
+.about pre { margin: 4px 0 0; white-space: pre-wrap; font: 10.5px/1.45 ui-monospace, Consolas, monospace; color: var(--muted); }
 
 .ctl-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
 .ctl-top label { color: var(--text); }
@@ -576,8 +585,8 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
     { key: "speed", label: "Speed", min: 1, max: 200, step: 1, help: "Cells moved per second" },
     { key: "turn", label: "Turn rate", min: -150, max: 150, step: 0.5, help: "How hard agents steer toward the strongest sensor. Negative steers away" },
     { key: "angle", label: "Sensor angle", min: 1, max: 180, step: 1, unit: "°", help: "Angle between the middle sensor and the side sensors" },
-    { key: "dist", label: "Sensor distance", min: 1, max: 80, step: 0.5, help: "How far ahead the sensors are, in cells" },
-    { key: "size", label: "Sensor size", min: 0, max: 6, step: 1, help: "Radius of the patch each sensor sums. Bigger is smoother but slower" },
+    { key: "dist", label: "Sensor distance", min: 1, max: 40, step: 0.5, help: "How far ahead the sensors are, in cells" },
+    { key: "size", label: "Sensor size", min: 0, max: 5, step: 1, help: "Radius of the patch each sensor sums. Bigger is smoother but slower" },
     { key: "wander", label: "Wander", min: 0, max: 20, step: 0.1, help: "Random turning on every step" },
     { key: "deposit", label: "Deposit", min: 0.01, max: 3, log: true, help: "Trail left per second" },
     { key: "decay", label: "Decay", min: 5e-3, max: 5, log: true, help: "How quickly this species' trail fades" },
@@ -686,7 +695,7 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
       tab: "sim",
       label: "Speed",
       min: 0.02,
-      max: 8,
+      max: 4,
       log: true,
       fmt: times,
       help: "Simulated seconds per real second. Turn it down for slow motion"
@@ -695,7 +704,7 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
       path: "sim.stepSize",
       tab: "sim",
       label: "Step size",
-      min: 0.25,
+      min: 0.75,
       max: 3,
       step: 0.05,
       fmt: times,
@@ -3341,7 +3350,7 @@ fn composite(i: VO) -> @location(0) vec4f {
     ["life", "Life", "Predator/prey: energy, eating, births and starvation"],
     ["look", "Look", "Colours, brightness, glow"],
     ["world", "World", "Emitters, absorbers and barriers"],
-    ["presets", "Presets", "Presets and share links"],
+    ["more", "More", "Presets, share links, Randomise, and about"],
     ["debug", "Debug", "Counts, graphs, timings and diagnostics"]
   ];
   var ui = {
@@ -4789,23 +4798,53 @@ fn composite(i: VO) -> @location(0) vec4f {
     return { tick };
   }
 
-  // src/ui/tab-presets.js
-  function presetsTab(body2) {
-    const chips = el("div", "chips");
-    for (const [key, p] of Object.entries(PRESETS)) {
-      const b = button(p.name || key, () => applyPreset(key), { cls: key === state.preset ? "on" : "" });
-      chips.append(b);
-    }
-    body2.append(chips);
+  // src/ui/tab-more.js
+  var GLOW_LICENCE = `MIT License
+
+Copyright (c) 2017 Pavel Dobryakov
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.`;
+  function about(body2) {
+    body2.append(caption("About"));
+    body2.append(note("Plasmodia: a particle simulation on WebGPU. Up to 2 million particles in four species leave trails and steer by each other's, and can graze, hunt and multiply."));
+    const link = (text, href) => Object.assign(el("a", null, text), { href, target: "_blank", rel: "noopener" });
+    const line = (...parts) => {
+      const p = el("p");
+      p.append(...parts);
+      return p;
+    };
+    const credits = el("div", "about");
+    credits.append(
+      el("p", "about-head", "Inspired by"),
+      line(link("Coding Adventure: Ant and Slime Simulations", "https://www.youtube.com/watch?v=X-iSQQgOd1A"), " by Sebastian Lague"),
+      line(link("Particle Life", "https://sandbox-science.com/particle-life"), " on Sandbox Science"),
+      Object.assign(line("Glow (bloom and sun rays) adapted from ", link("WebGL Fluid Simulation", "https://github.com/PavelDoGreat/WebGL-Fluid-Simulation"), " by Pavel Dobryakov"), { className: "gap" })
+    );
+    const lic = el("details");
+    lic.append(el("summary", null, "Licence"), el("pre", null, GLOW_LICENCE));
+    credits.append(lic);
+    body2.append(credits);
+  }
+  function moreTab(body2, add2) {
+    const pick = add2(dropdown({
+      label: "Preset",
+      options: [["", "Custom"], ...Object.entries(PRESETS).map(([k, p]) => [k, p.name || k])],
+      get: () => state.preset || "",
+      set: (v) => {
+        if (v) applyPreset(v);
+      }
+    }));
+    pick.el.querySelector('option[value=""]').disabled = true;
+    queueMicrotask(pick.refresh);
     body2.append(note("← and → step through these. Presets don't change the brush or the debug settings."));
     body2.append(row(
       button("Copy link", () => actions.copyLink(), { title: "Copy a link that recreates these settings" }),
       button("Randomise", () => actions.randomise(), { title: "Random settings (N)" })
     ));
-    body2.append(row(button("Plain defaults", () => {
-      replace(clone(DEFAULTS));
-      state.preset = null;
-    })));
     body2.append(caption("Open a link"));
     const input = el("input");
     input.type = "text";
@@ -4829,7 +4868,7 @@ fn composite(i: VO) -> @location(0) vec4f {
     const r = el("div", "input-row");
     r.append(input, go);
     body2.append(r);
-    body2.append(note("Links from the previous slime-mould app open too."));
+    about(body2);
   }
 
   // src/ui/graph.js
@@ -5155,7 +5194,7 @@ OUT OF RANGE ${r.outOfRange}` : " · positions ok"}`;
       body2.append(button("Shuffle colours", () => actions.shuffleColours(), { title: "New colours for every species and a new gradient" }));
     },
     world: worldTab,
-    presets: presetsTab,
+    more: moreTab,
     debug: debugTab
   };
   function buildPanel() {
@@ -5493,6 +5532,10 @@ OUT OF RANGE ${r.outOfRange}` : " · positions ok"}`;
       wantShot = res;
     });
   }
+  function presetRange(key) {
+    const v = Object.values(PRESETS).flatMap((p) => p.species.slice(0, p.sim.speciesCount).map((s) => s[key]));
+    return [Math.min(...v), Math.max(...v)];
+  }
   function randomise() {
     const rnd = (a, b) => a + Math.random() * (b - a);
     const n = Math.random() < 0.4 ? 1 : 2 + (Math.random() * 3 | 0);
@@ -5500,7 +5543,9 @@ OUT OF RANGE ${r.outOfRange}` : " · positions ok"}`;
     next2.sim.speciesCount = n;
     next2.sim.spawn = ["point", "random", "inward", "disk", "ring", "vortex", "clusters"][Math.random() * 7 | 0];
     next2.sim.edges = Math.random() < 0.3 ? "wrap" : "bounce";
-    const deposit = rnd(0.1, 0.8), decay = Math.exp(rnd(Math.log(0.04), Math.log(0.8))), diffuse = rnd(1, 6);
+    const [d0, d1] = presetRange("deposit"), [k0, k1] = presetRange("decay"), [f0, f1] = presetRange("diffuse");
+    const deposit = Math.exp(rnd(Math.log(d0), Math.log(d1))), decay = Math.exp(rnd(Math.log(k0), Math.log(k1)));
+    const diffuse = f0 + (f1 - f0) * Math.random() ** 2;
     next2.species.forEach((s, i) => {
       Object.assign(s, {
         speed: Math.round(rnd(15, 70)),
