@@ -1176,27 +1176,30 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
     }
   };
   var CURRENT = {
-    // Predator/prey: green prey graze and avoid red predators' trail; predators follow prey trail, eat, and starve.
+    // Predator/prey with food (the user's, 2026-10-23): blue prey graze a slowly regrowing field from a single dot of
+    // 3,900 agents; red predators eat them. Replaced the first tuned version (300k scattered, no food), which
+    // tests/life.cjs keeps as its own setup.
     predprey: {
       name: "Predator & prey",
-      sim: { startAgents: 3e5, maxAgents: 15e5, speciesCount: 2, spawn: "random", speed: 1, stepSize: 1, edges: "wrap" },
-      life: { on: true, cell: 4 },
+      sim: { startAgents: 3900, maxAgents: 15e5, speciesCount: 2, spawn: "text", text: ".", res: 1, speed: 1, stepSize: 1, edges: "wrap" },
+      life: { on: true, cell: 4, food: true, regrow: 40.707429999210284, stock: 0.35602795355055433, foodColor: "#59ff00", foodShow: 0 },
       species: [
         {
-          color: "#62f08a",
+          color: "#7cddfe",
           speed: 30,
-          turn: 30,
+          turn: 19.5,
           angle: 45,
-          dist: 18,
+          dist: 4,
           size: 1,
-          wander: 0.5,
-          deposit: 0.4,
-          decay: 0.5,
-          diffuse: 3,
-          attract: [0.6, -1.5, 0, 0],
+          wander: 1.8,
+          deposit: 1.2044308030415347,
+          decay: 0.9999309348163722,
+          diffuse: 0.4,
+          attract: [0.2, -1.5, 0, 0],
           graze: 0.5,
           metabolism: 0.1,
           efficiency: 0,
+          forage: 0.4,
           crowding: 40,
           hunt: [0, 0, 0, 0]
         },
@@ -1205,21 +1208,143 @@ const MAX_BIRTHS = ${MAX_BIRTHS}u;
           speed: 45,
           turn: 40,
           angle: 40,
-          dist: 28,
+          dist: 5,
           size: 1,
+          wander: 0.5,
+          deposit: 1.7056355940052372,
+          decay: 0.9999309348163722,
+          diffuse: 0.6,
+          attract: [1.5, 0.08, 0, 0],
+          graze: 0,
+          metabolism: 0.3,
+          efficiency: 0.62,
+          forage: 0,
+          crowding: 0,
+          hunt: [0.8, 0, 0, 0]
+        }
+      ],
+      look: {
+        mode: "species",
+        palette: "ember",
+        bg: "#04060a",
+        exposure: 2,
+        contrast: 1,
+        vignette: 0.3,
+        sharp: false,
+        bloom: true,
+        bloomIntensity: 0.15,
+        bloomThreshold: 0.8,
+        bloomKnee: 0.7,
+        sunrays: false,
+        raysWeight: 1
+      },
+      world: { barriers: [], barrierColor: "#303030", emitters: [], absorbers: [] }
+    },
+    // Four species with food (the user's, 2026-10-23): green grazers, three kinds of predator that also eat each other,
+    // from a ring of 30k agents, and an emitter that keeps seeding a few of every species.
+    pp4: {
+      name: "P&P4",
+      sim: { startAgents: 3e4, maxAgents: 15e5, speciesCount: 4, spawn: "ring", text: "slime", res: 1, speed: 1.4767571064189426, stepSize: 1, edges: "wrap" },
+      life: { on: true, cell: 5, food: true, regrow: 60.136882571043955, stock: 0.45062577380734226, foodColor: "#2c5a2a", foodShow: 0 },
+      species: [
+        {
+          color: "#62f08a",
+          speed: 13,
+          turn: 16.5,
+          angle: 16,
+          dist: 13,
+          size: 1,
+          wander: 0.4,
+          deposit: 0.7544976841228009,
+          decay: 0.6080930003231838,
+          diffuse: 0.3,
+          attract: [0.05, -1.71, 0.03, -1.88],
+          graze: 0.49,
+          metabolism: 0.11,
+          efficiency: 0,
+          forage: 0.8,
+          crowding: 60,
+          hunt: [0, 0, 0, 0]
+        },
+        {
+          color: "#ff4f5e",
+          speed: 14,
+          turn: 75.5,
+          angle: 50,
+          dist: 12.5,
+          size: 2,
           wander: 0.5,
           deposit: 2,
           decay: 0.5,
-          diffuse: 3,
-          attract: [1.5, 0.3, 0, 0],
+          diffuse: 0.4,
+          attract: [1.71, 0, -0.86, -0.3],
           graze: 0,
-          metabolism: 0.5,
-          efficiency: 0.35,
+          metabolism: 0.12,
+          efficiency: 0.31,
+          forage: 0,
           crowding: 0,
-          hunt: [0.4, 0, 0, 0]
+          hunt: [0.75, 0, 0, 0.11]
+        },
+        {
+          color: "#8ac6ff",
+          speed: 12,
+          turn: 86.5,
+          angle: 60,
+          dist: 10,
+          size: 2,
+          wander: 0,
+          deposit: 2.3609248426077394,
+          decay: 0.7637830291190362,
+          diffuse: 0.4,
+          attract: [0.1, 0.83, -0.47, 0.35],
+          graze: 0,
+          metabolism: 0.04,
+          efficiency: 0.27,
+          forage: 0,
+          crowding: 0,
+          hunt: [0, 0.33, 0, 0.22]
+        },
+        {
+          color: "#d400ff",
+          speed: 11,
+          turn: 91,
+          angle: 65,
+          dist: 10,
+          size: 2,
+          wander: 0,
+          deposit: 1.0869102175517975,
+          decay: 0.7797762514134767,
+          diffuse: 0.4,
+          attract: [1.21, 0.69, -0.57, 0],
+          graze: 0,
+          metabolism: 0.05,
+          efficiency: 0.36,
+          forage: 0,
+          crowding: 0,
+          hunt: [0.48, 0.25, 0, 0]
         }
       ],
-      look: { mode: "species", bg: "#04060a", exposure: 2, contrast: 1, vignette: 0.3 }
+      look: {
+        mode: "species",
+        palette: "ember",
+        bg: "#04060a",
+        exposure: 2,
+        contrast: 1,
+        vignette: 0.3,
+        sharp: false,
+        bloom: false,
+        bloomIntensity: 0.8,
+        bloomThreshold: 0.6,
+        bloomKnee: 0.7,
+        sunrays: false,
+        raysWeight: 1
+      },
+      world: {
+        barriers: [],
+        barrierColor: "#000000",
+        emitters: [{ kind: "circle", rate: 10, species: -1, dir: 3, spread: 40, area: true, on: true, from: -1, x: 0.301, y: 0.4979, r: 0.0243 }],
+        absorbers: []
+      }
     }
   };
   var PRESETS = Object.fromEntries([
