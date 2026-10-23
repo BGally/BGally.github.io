@@ -2842,7 +2842,7 @@ fn composite(i: VO) -> @location(0) vec4f {
     const centres = [];
     for (let s = 0; s < ns; s++) {
       const t = -Math.PI / 2 + s * TAU / ns;
-      centres.push(ns === 1 ? [cx, cy] : [cx + Math.cos(t) * R * 0.5, cy + Math.sin(t) * R * 0.5]);
+      centres.push(ns === 1 ? [cx, cy] : [cx + Math.cos(t) * R * 0.5, cy + Math.sin(t) * H * 0.25]);
     }
     for (let i = 0; i < n; i++) {
       const sp = Math.floor(Math.random() * ns);
