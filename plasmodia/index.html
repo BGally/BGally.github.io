@@ -4805,7 +4805,12 @@ fn composite(i: VO) -> @location(0) vec4f {
   // src/ui/tab-more.js
   function about(body2) {
     body2.append(caption("About"));
-    body2.append(note("Plasmodia: a particle simulation on WebGPU. Up to 2 million particles in four species leave trails and steer by each other's, and can graze, hunt and multiply."));
+    for (const text of [
+      "Plasmodia: a particle simulation on WebGPU. Up to 2 million particles in four species leave trails and steer by each other's. Networks, swirls and hunting fronts form on their own.",
+      "Slime mould: each particle senses the trail ahead, left and right, turns towards the strongest and leaves its own. Busy paths grow stronger, quiet ones fade, and veins like a slime mould's appear.",
+      "Species: each one is drawn to or avoids each trail (the Matrix tab), so species chase each other, mix, or split into territories.",
+      "Predator and prey (Life): particles gain energy by grazing or hunting, burn it to live, split in two when full and die when empty. Prey boom, predators follow and over-hunt, then starve, and the prey recover."
+    ]) body2.append(note(text));
     const link = (text, href) => Object.assign(el("a", null, text), { href, target: "_blank", rel: "noopener" });
     const line = (...parts) => {
       const p = el("p");
@@ -4817,6 +4822,7 @@ fn composite(i: VO) -> @location(0) vec4f {
       el("p", "about-head", "Inspired by"),
       line(link("Coding Adventure: Ant and Slime Simulations", "https://www.youtube.com/watch?v=X-iSQQgOd1A"), " by Sebastian Lague"),
       line(link("Particle Life", "https://sandbox-science.com/particle-life"), " on Sandbox Science"),
+      line(link("Predators and Prey", "https://www.youtube.com/watch?v=M0nRWcF1WJw"), " by Numberphile"),
       Object.assign(line("Glow (bloom and sun rays) adapted from ", link("WebGL Fluid Simulation", "https://github.com/PavelDoGreat/WebGL-Fluid-Simulation"), " by Pavel Dobryakov"), { className: "gap" })
     );
     body2.append(credits);
